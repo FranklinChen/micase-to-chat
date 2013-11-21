@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Gemma Lum (University of Michigan) -->
+<!-- MICASE DTD, based loosely on the TEI, with a local extension for OVERLAP. -->
+<!-- xmlified by LB -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="TEI.2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TEIHEADER"/>
+        <xs:element ref="TEXT"/>
+      </xs:sequence>
+      <xs:attribute name="N"/>
+      <xs:attribute name="ID"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="TEI.2"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TEICORPUS.2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TEIHEADER"/>
+        <xs:element maxOccurs="unbounded" ref="TEI.2"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="TEICORPUS.2"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TEIHEADER">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FILEDESC"/>
+        <xs:element ref="PROFILEDESC"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TYPE" default="TEXT"/>
+      <xs:attribute name="CREATOR"/>
+      <xs:attribute name="STATUS" default="NEW">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="NEW"/>
+            <xs:enumeration value="UPDATE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DATE.CREATED"/>
+      <xs:attribute name="DATE.UPDATED"/>
+      <xs:attribute name="TEIFORM" default="TEIHEADER"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FILEDESC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TITLESTMT"/>
+        <xs:element ref="WORDCOUNT"/>
+        <xs:element ref="PUBLICATIONSTMT"/>
+        <xs:element maxOccurs="unbounded" ref="SOURCEDESC"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="FILEDESC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WORDCOUNT" type="xs:string"/>
+  <xs:element name="TITLESTMT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="TITLE"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="RESPSTMT"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="TITLESTMT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RESPSTMT">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="RESP"/>
+        <xs:element ref="NAME"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="RESPSTMT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RESP">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="RESP"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PUBLICATIONSTMT">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="PUBLISHER"/>
+          <xs:element ref="DISTRIBUTOR"/>
+          <xs:element ref="AUTHORITY"/>
+          <xs:element ref="PUBPLACE"/>
+          <xs:element ref="ADDRESS"/>
+          <xs:element ref="IDNO"/>
+          <xs:element ref="AVAILABILITY"/>
+          <xs:element ref="DATE"/>
+        </xs:choice>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="PUBLICATIONSTMT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PUBLISHER">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="PUBLISHER"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PUBPLACE">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="PUBPLACE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DISTRIBUTOR">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="DISTRIBUTOR"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AUTHORITY">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="AUTHORITY"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IDNO">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="TEIFORM" default="IDNO"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AVAILABILITY">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="STATUS">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="FREE"/>
+            <xs:enumeration value="UNKNOWN"/>
+            <xs:enumeration value="RESTRICTED"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="AVAILABILITY"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SOURCEDESC">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="P"/>
+        <xs:element ref="RECORDINGSTMT"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="SOURCEDESC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RECORDINGSTMT">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:element maxOccurs="unbounded" ref="RECORDING"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="RECORDINGSTMT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RECORDING">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="RESPSTMT"/>
+          <xs:element ref="EQUIPMENT"/>
+          <xs:element ref="DATE"/>
+        </xs:choice>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TYPE" default="AUDIO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="AUDIO"/>
+            <xs:enumeration value="VIDEO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DUR"/>
+      <xs:attribute name="TEIFORM" default="RECORDING"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EQUIPMENT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="EQUIPMENT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PROFILEDESC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="CREATION"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="LANGUSAGE"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PARTICDESC"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="SETTINGDESC"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="PROFILEDESC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CREATION">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="CREATION"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LANGUSAGE">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="P"/>
+        <xs:element ref="LANGUAGE"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="LANGUSAGE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LANGUAGE">
+    <xs:complexType mixed="true">
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="WSD" type="xs:ENTITY"/>
+      <xs:attribute name="USAGE"/>
+      <xs:attribute name="TEIFORM" default="LANGUAGE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PARTICDESC">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element ref="PERSON"/>
+            <xs:element ref="PERSONGRP"/>
+          </xs:choice>
+          <xs:element minOccurs="0" ref="PARTICLINKS"/>
+        </xs:sequence>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="PARTICDESC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PERSON">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="AFFILIATION"/>
+        <xs:element ref="BIRTH"/>
+        <xs:element ref="EDUCATION"/>
+        <xs:element ref="FIRSTLANG"/>
+        <xs:element ref="LANGKNOWN"/>
+        <xs:element ref="OCCUPATION"/>
+        <xs:element ref="RESIDENCE"/>
+        <xs:element ref="SOCECSTATUS"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="ROLE"/>
+      <xs:attribute name="SEX">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="U"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="AGE"/>
+      <xs:attribute name="RESTRICT">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="ALL"/>
+            <xs:enumeration value="CITE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="PERSON"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PERSONGRP">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="AFFILIATION"/>
+        <xs:element ref="BIRTH"/>
+        <xs:element ref="EDUCATION"/>
+        <xs:element ref="FIRSTLANG"/>
+        <xs:element ref="LANGKNOWN"/>
+        <xs:element ref="OCCUPATION"/>
+        <xs:element ref="RESIDENCE"/>
+        <xs:element ref="SOCECSTATUS"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="ROLE"/>
+      <xs:attribute name="SEX">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="U"/>
+            <xs:enumeration value="X"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="AGE"/>
+      <xs:attribute name="SIZE"/>
+      <xs:attribute name="TEIFORM" default="PERSONGRP"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BIRTH">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DATE"/>
+      <xs:attribute name="TEIFORM" default="BIRTH"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FIRSTLANG">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="FIRSTLANG"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LANGKNOWN">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="LANGKNOWN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RESIDENCE">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="RESIDENCE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EDUCATION">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="EDUCATION"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AFFILIATION">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="AFFILIATION"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OCCUPATION">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="SCHEME" type="xs:IDREF"/>
+      <xs:attribute name="CODE" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="OCCUPATION"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SOCECSTATUS">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="SCHEME" type="xs:IDREF"/>
+      <xs:attribute name="CODE" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="SOCECSTATUS"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PARTICLINKS">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:element maxOccurs="unbounded" ref="RELATION"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="PARTICLINKS"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RELATION">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TYPE" default="PERSONAL"/>
+      <xs:attribute name="DESC"/>
+      <xs:attribute name="ACTIVE" type="xs:IDREFS"/>
+      <xs:attribute name="PASSIVE" type="xs:IDREFS"/>
+      <xs:attribute name="MUTUAL" default="Y">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Y"/>
+            <xs:enumeration value="N"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="RELATION"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SETTING">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="NAME"/>
+          <xs:element ref="TIME"/>
+          <xs:element ref="LOCALE"/>
+          <xs:element ref="ACTIVITY"/>
+        </xs:choice>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="WHO" type="xs:IDREFS"/>
+      <xs:attribute name="TEIFORM" default="SETTING"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LOCALE">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="LOCALE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ACTIVITY">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="ACTIVITY"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SETTINGDESC">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element maxOccurs="unbounded" ref="P"/>
+        <xs:element maxOccurs="unbounded" ref="SETTING"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DEFAULT" default="NO">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="YES"/>
+            <xs:enumeration value="NO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="SETTINGDESC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DATE">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="CALENDAR"/>
+      <xs:attribute name="VALUE"/>
+      <xs:attribute name="CERTAINTY"/>
+      <xs:attribute name="TEIFORM" default="DATE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TIME">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="VALUE"/>
+      <xs:attribute name="TYPE">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="AM"/>
+            <xs:enumeration value="PM"/>
+            <xs:enumeration value="24HOUR"/>
+            <xs:enumeration value="DESCRIPTIVE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ZONE"/>
+      <xs:attribute name="TEIFORM" default="TIME"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NAME">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="NAME"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ADDRESS">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="ADDRESS"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ABBR">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="EXPAN"/>
+      <xs:attribute name="RESP" type="xs:IDREF"/>
+      <xs:attribute name="CERT"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="TEIFORM" default="ABBR"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EXPAN">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="ABBR"/>
+      <xs:attribute name="RESP" type="xs:IDREF"/>
+      <xs:attribute name="CERT"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="TEIFORM" default="EXPAN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SIC">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="CORR"/>
+      <xs:attribute name="RESP" type="xs:IDREF"/>
+      <xs:attribute name="CERT"/>
+      <xs:attribute name="TEIFORM" default="SIC"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CORR">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="SIC"/>
+      <xs:attribute name="RESP"/>
+      <xs:attribute name="CERT"/>
+      <xs:attribute name="TEIFORM" default="CORR"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UNCLEAR">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="REASON"/>
+      <xs:attribute name="RESP"/>
+      <xs:attribute name="CERT"/>
+      <xs:attribute name="HAND" type="xs:IDREF"/>
+      <xs:attribute name="AGENT"/>
+      <xs:attribute name="TEIFORM" default="UNCLEAR"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SEG">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ANA" type="xs:IDREFS"/>
+      <xs:attribute name="CORRESP" type="xs:IDREFS"/>
+      <xs:attribute name="NEXT" type="xs:IDREF"/>
+      <xs:attribute name="PREV" type="xs:IDREF"/>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="FUNCTION"/>
+      <xs:attribute name="SUBTYPE"/>
+      <xs:attribute name="PART" default="N">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Y"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="F"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="SEG"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FOREIGN">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="SEG"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="FOREIGN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OVERLAP">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="OVERLAP"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="U">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ABBR"/>
+        <xs:element ref="EXPAN"/>
+        <xs:element ref="NAME"/>
+        <xs:element ref="CORR"/>
+        <xs:element ref="SIC"/>
+        <xs:element ref="UNCLEAR"/>
+        <xs:element ref="FOREIGN"/>
+        <xs:element ref="HI"/>
+        <xs:element ref="TITLE"/>
+        <xs:element ref="OVERLAP"/>
+        <xs:element ref="EVENT"/>
+        <xs:element ref="PAUSE"/>
+        <xs:element ref="SEG"/>
+        <xs:element ref="SHIFT"/>
+        <xs:element ref="U"/>
+        <xs:element ref="WRITING"/>
+        <xs:element ref="GAP"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="START" type="xs:IDREF"/>
+      <xs:attribute name="END" type="xs:IDREF"/>
+      <xs:attribute name="DUR"/>
+      <xs:attribute name="TRANS" default="SMOOTH">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="SMOOTH"/>
+            <xs:enumeration value="LATCHING"/>
+            <xs:enumeration value="OVERLAP"/>
+            <xs:enumeration value="PAUSE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="RESTRICT">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="ALL"/>
+            <xs:enumeration value="CITE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="WHO" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="U"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PAUSE">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="START" type="xs:IDREF"/>
+      <xs:attribute name="END" type="xs:IDREF"/>
+      <xs:attribute name="DUR"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="WHO" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="PAUSE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GAP">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="DESC"/>
+      <xs:attribute name="REASON"/>
+      <xs:attribute name="RESP"/>
+      <xs:attribute name="AGENT"/>
+      <xs:attribute name="EXTENT" type="xs:IDREF"/>
+      <xs:attribute name="TEIFORM" default="GAP"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EVENT">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="START" type="xs:IDREF"/>
+      <xs:attribute name="END" type="xs:IDREF"/>
+      <xs:attribute name="DUR"/>
+      <xs:attribute name="WHO" type="xs:IDREF"/>
+      <xs:attribute name="ITERATED" default="N">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Y"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="U"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DESC"/>
+      <xs:attribute name="TEIFORM" default="EVENT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WRITING">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="WHO" type="xs:IDREF"/>
+      <xs:attribute name="TYPE"/>
+      <xs:attribute name="SCRIPT" type="xs:IDREF"/>
+      <xs:attribute name="GRADUAL">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Y"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="U"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="TEIFORM" default="WRITING"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SHIFT">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="LANG" type="xs:IDREF"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="WHO" type="xs:IDREF"/>
+      <xs:attribute name="FEATURE" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="TEMPO"/>
+            <xs:enumeration value="LOUD"/>
+            <xs:enumeration value="PITCH"/>
+            <xs:enumeration value="TENSION"/>
+            <xs:enumeration value="RHYTHM"/>
+            <xs:enumeration value="VOICE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="NEW" default="NORMAL"/>
+      <xs:attribute name="TEIFORM" default="SHIFT"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="P">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="HI"/>
+        <xs:element ref="TITLE"/>
+        <xs:element ref="GAP"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="P"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HI">
+    <xs:complexType mixed="true">
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="HI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TITLE">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="HI"/>
+      </xs:sequence>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="TITLE"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TEXT">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="BODY">
+          <xs:attribute name="ID" type="xs:ID"/>
+          <xs:attribute name="N"/>
+          <xs:attribute name="REND"/>
+          <xs:attribute name="TEIFORM" default="TEXT"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BODY">
+    <xs:sequence>
+      <xs:element ref="BODY"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BODY">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="P"/>
+        <xs:element ref="EVENT"/>
+        <xs:element ref="PAUSE"/>
+        <xs:element ref="SHIFT"/>
+        <xs:element ref="U"/>
+      </xs:choice>
+      <xs:attribute name="ID" type="xs:ID"/>
+      <xs:attribute name="N"/>
+      <xs:attribute name="REND"/>
+      <xs:attribute name="TEIFORM" default="BODY"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+<!--
+  
+  <!ENTITY % ISOgrk1 PUBLIC
+         "ISO 8879:1986//ENTITIES Greek Letters//EN">
+  %ISOgrk1;
+  
+  <!ENTITY % ISOlat1 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN">
+  %ISOlat1; 
+  
+  <!ENTITY % ISOlat2 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 2//EN">
+  %ISOlat2; 
+  
+  <!ENTITY % ISOnum  
+    PUBLIC   "ISO 8879-1986//ENTITIES Numeric and Special Graphic//EN">
+  %ISOnum;
+  
+  <!ENTITY % ISOpub  PUBLIC "ISO 8879-1986//ENTITIES Publishing//EN">
+  %ISOpub; 
+  
+  <!NOTATION cgm PUBLIC
+    'ISO 8632:1987//NOTATION Computer Graphics Metafile//EN' >
+  
+  <!NOTATION cgmchar PUBLIC
+    'ISO 8632-2:1987//NOTATION CGM Character Encoding//EN' >
+  
+  <!NOTATION jpeg PUBLIC
+    'ISO DIS 10918//NOTATION JPEG Graphics Format//EN' >
+  
+  <!NOTATION tiff PUBLIC
+    '-//Aldus Corporation//NOTATION Tagged Image File Format//EN' >
+  
+  <!NOTATION gif PUBLIC
+    '-//Compuserve Information Service//NOTATION Graphics Interchange Format//EN' >
+  
+  <!NOTATION sgml PUBLIC
+    'ISO 8879:1986//NOTATION Standard Generalized Markup Language//EN' >
+  
+  <!NOTATION wsd  PUBLIC
+    '-//TEI P3-1994//NOTATION Writing System Declaration//EN' >
+-->

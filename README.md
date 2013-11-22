@@ -2,6 +2,10 @@
 
 ### DTD
 
+``` console
+$ xmlstarlet val -d micasex.dtd src/test/resources/adv700ju023.xml
+```
+
 Convert DTD to XML Schema using Trang:
 
 ``` console
@@ -16,9 +20,6 @@ The DTD does not seem to match the XML data!
 PUBLICATIONSTMT expected but WORDCOUNT found
 ```
 
-``` console
-$ xmllint --dtdvalid micasex.dtd --nowarning --noout src/test/resources/adv700ju023.xml
-```
 
 Changed `micasex.dtd` to include:
 
@@ -28,3 +29,12 @@ Changed `micasex.dtd` to include:
 ```
 
 That is the only change needed.
+
+
+### XSD
+
+Verify against the generated XSD.
+
+``` console
+$ xmlstarlet val -s src/main/xsd/micasex.xsd src/test/resources/adv700ju023.xml
+```

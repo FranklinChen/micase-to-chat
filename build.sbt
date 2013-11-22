@@ -25,8 +25,8 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scalacheck" %% "scalacheck" % "1.11.0" % "test",
-  "org.specs2" %% "specs2" % "2.3.4" % "test"
+  "org.scalacheck" %% "scalacheck" % "1.11.1" % "test",
+  "org.specs2" %% "specs2" % "2.3.6" % "test"
 )
 
 scalaxbSettings

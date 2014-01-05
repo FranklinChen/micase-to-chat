@@ -1,5 +1,7 @@
 ## MICASE to CHAT
 
+[![Build Status](https://travis-ci.org/FranklinChen/micase-to-chat.png)](https://travis-ci.org/FranklinChen/micase-to-chat)
+
 ### DTD
 
 ``` console

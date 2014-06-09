@@ -14,7 +14,7 @@ description := "Convert MICASE XML to CHAT text"
 
 version := "1.0.0"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.1"
 
 // "-deprecation"
 scalacOptions ++= Seq(
@@ -25,8 +25,10 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scalacheck" %% "scalacheck" % "1.11.1" % "test",
-  "org.specs2" %% "specs2" % "2.3.7" % "test"
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+  "org.scala-lang.modules" %% "scala-xml" % "1.0.2",
+  "org.scalacheck" %% "scalacheck" % "1.11.4" % "test",
+  "org.specs2" %% "specs2" % "2.3.12" % "test"
 )
 
 scalaxbSettings
